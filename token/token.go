@@ -9,6 +9,11 @@ type Token struct {
 	Literal string // string; has the advantage of being easy to debug
 }
 
+var keywords = map[string]Type{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
 // Define the possible Token.Type as constants
 const (
 	//
@@ -73,3 +78,11 @@ const (
 	// LET is a keyword type
 	LET = "LET"
 )
+
+// LookupIdent returns a keyword's constant if found, or IDENT if not, as the token.Type
+func LookupIdent(ident string) Type {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
