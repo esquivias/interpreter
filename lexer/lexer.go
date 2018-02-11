@@ -51,6 +51,7 @@ func (l *Lexer) NextToken() token.Token {
 
 	case '=':
 		if l.peekChar() == '=' {
+			// Save the current l.ch in a local variable (ch) before calling l.readChar(), which will advance the lexer positions
 			ch := l.ch
 			l.readChar()
 			literal := string(ch) + string(l.ch)
@@ -64,6 +65,7 @@ func (l *Lexer) NextToken() token.Token {
 		tok = newToken(token.MINUS, l.ch)
 	case '!':
 		if l.peekChar() == '=' {
+			// Save the current l.ch in a local variable (ch) before calling l.readChar(), which will advance the lexer positions
 			ch := l.ch
 			l.readChar()
 			literal := string(ch) + string(l.ch)
